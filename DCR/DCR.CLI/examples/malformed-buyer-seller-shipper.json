@@ -1,0 +1,316 @@
+{
+    "events": [
+        {
+            "id": "BuyerAsksSellers",
+            "initiator": "Buyer",
+            "action": "Ask",
+            "receivers": [
+                "Seller1",
+                "Seller2"
+            ]
+        },
+        {
+            "initiator": "Seller1",
+            "action": "Quote",
+            "receivers": [
+                "Buyer"
+            ]
+        },
+        {
+            "id": "Seller2QuotesBuyer",
+            "initiator": "Seller2",
+            "receivers": [
+                "Buyer"
+            ]
+        },
+        {
+            "id": "BuyerAcceptsSeller1",
+            "initiator": "Buyer",
+            "action": "Accept1"
+        },
+        {
+            "id": "BuyerAcceptsSeller2",
+            "initiator": "Buyer",
+            "action": "Accept2",
+            "receivers": [
+                "Seller1",
+                "Seller2"
+            ]
+        },
+        {
+            "id": "BuyerRejectsSellers",
+            "initiator": "Buyer",
+            "action": "Reject",
+            "receivers": [
+                "Seller1",
+                "Seller2"
+            ]
+        },
+        {
+            "id": "Seller1OrdersShipper",
+            "initiator": "Seller1",
+            "action": "Order",
+            "receivers": [
+                "Shipper"
+            ]
+        },
+        {
+            "id": "Seller2OrdersShipper",
+            "initiator": "Seller2",
+            "action": "Order",
+            "receivers": [
+                "Shipper"
+            ]
+        },
+        {
+            "id": "ShipperDetailsBuyer",
+            "initiator": "Shipper",
+            "action": "Details",
+            "receivers": [
+                "Buyer"
+            ]
+        }
+    ],
+    "nestings": [
+        {
+            "id": "Negotiate",
+            "events": [
+                "BuyerAsksSellers"
+            ],
+            "childNestings": [
+                {
+                    "id": "Quotes",
+                    "events": [
+                        "Seller1QuotesBuyer",
+                        "Seller2QuotesBuyer"
+                    ],
+                    "childNestings": []
+                }
+            ]
+        },
+        {
+            "id": "Decide",
+            "events": [
+                "BuyerAcceptsSeller1",
+                "BuyerRejectsSellers",
+                "BuyerAcceptsSeller2"
+            ],
+            "childNestings": []
+        },
+        {
+            "id": "Ship",
+            "events": [
+                "ShipperDetailsBuyer"
+            ],
+            "childNestings": [
+                {
+                    "id": "Orders",
+                    "events": [
+                        "Seller1OrdersShipper",
+                        "Seller2OrdersShipper"
+                    ],
+                    "childNestings": []
+                }
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "from": "BuyerAsksSellers",
+            "to": "Quotes",
+            "relations": [
+                {
+                    "relationType": "Response"
+                },
+                {
+                    "relationType": "Condition"
+                }
+            ]
+        },
+        {
+            "from": "Seller1QuotesBuyer",
+            "to": "BuyerAcceptsSeller1",
+            "relations": [
+                {
+                    "relationType": "Response"
+                }
+            ]
+        },
+        {
+            "from": "Seller2QuotesBuyer",
+            "to": "BuyerAcceptsSeller2",
+            "relations": [
+                {
+                    "relationType": "Response"
+                }
+            ]
+        },
+        {
+            "from": "Quotes",
+            "to": "Decide",
+            "relations": [
+                {
+                    "relationType": "Milestone"
+                },
+                {
+                    "relationType": "Condition"
+                }
+            ]
+        },
+        {
+            "from": "Decide",
+            "to": "Negotiate",
+            "relations": [
+                {
+                    "relationType": "Exclusion"
+                }
+            ]
+        },
+        {
+            "from": "Decide",
+            "to": "Decide",
+            "relations": [
+                {
+                    "relationType": "Exclusion"
+                }
+            ]
+        },
+        {
+            "from": "BuyerAcceptsSeller1",
+            "to": "Seller1OrdersShipper",
+            "relations": [
+                {
+                    "relationType": "Inclusion"
+                },
+                {
+                    "relationType": "Response"
+                }
+            ]
+        },
+        {
+            "from": "BuyerAcceptsSeller2",
+            "to": "Seller2OrdersShipper",
+            "relations": [
+                {
+                    "relationType": "Inclusion"
+                },
+                {
+                    "relationType": "Response"
+                }
+            ]
+        },
+        {
+            "from": "Orders",
+            "to": "ShipperDetailsBuyer",
+            "relations": [
+                {
+                    "relationType": "Inclusion"
+                },
+                {
+                    "relationType": "Response"
+                }
+            ]
+        },
+        {
+            "from": "Seller1OrdersShipper",
+            "to": "Seller1OrdersShipper",
+            "relations": [
+                {
+                    "relationType": "Exclusion"
+                }
+            ]
+        },
+        {
+            "from": "Seller2OrdersShipper",
+            "to": "Seller2OrdersShipper",
+            "relations": [
+                {
+                    "relationType": "Exclusion"
+                }
+            ]
+        },
+        {
+            "from": "ShipperDetailsBuyer",
+            "to": "ShipperDetailsBuyer",
+            "relations": [
+                {
+                    "relationType": "Exclusion"
+                }
+            ]
+        }
+    ],
+    "markings": [
+        {
+            "eventId": "BuyerAsksSellers",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "Seller1QuotesBuyer",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "Seller2QuotesBuyer",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "BuyerAcceptsSeller1",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "BuyerAcceptsSeller2",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "BuyerRejectsSellers",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "Seller1OrdersShipper",
+            "marking": {
+                "executed": false,
+                "included": false,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "Seller2OrdersShipper",
+            "marking": {
+                "executed": false,
+                "included": false,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "ShipperDetailsBuyer",
+            "marking": {
+                "executed": false,
+                "included": false,
+                "pending": false
+            }
+        }
+    ]
+}

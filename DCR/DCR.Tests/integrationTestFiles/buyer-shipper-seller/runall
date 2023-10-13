@@ -1,0 +1,38 @@
+#!/bin/bash
+
+pids=()
+current_port=9000
+
+trap ctrl_c INT
+
+function ctrl_c() {
+    echo "[runall] CTRL-C was pressed, killing all Jolie services..."
+    for pid in "${pids[@]}"; do
+        echo "[runall] Killing PID ${pid}"
+        kill ${pid} > /dev/null 2>&1
+        port_pid=$(lsof -t -i:$(echo $current_port))
+        kill ${port_pid} > /dev/null 2>&1
+        current_port=$((current_port-1))
+    done
+    exit 0
+}
+
+# Loop through each folder in "code/"
+for folder in code/*; do
+    # Get the folder name without the "code/" prefix
+    service=${folder#code/}
+
+    # Execute the command with the replaced folder and capitalized name
+    echo "[runall] Starting ${service}"
+    jolie -l code/${service}/jolie/lib/${service}.jar -s ${service^}Service code/${service}/jolie/${service}_service.ol &
+    pids+=($!)
+    current_port=$((current_port+1))
+    sleep 1
+done
+
+while true; do
+    echo "[runall] Press CTRL-C to shut down all services."
+    sleep 60
+done
+
+ctrl_c()

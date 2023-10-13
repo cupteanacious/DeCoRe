@@ -1,0 +1,47 @@
+#!/bin/bash
+
+pids=()
+current_port=9000
+
+trap ctrl_c INT
+
+function ctrl_c() {
+    echo "[runall] CTRL-C was pressed, killing all Jolie services..."
+    for pid in "${pids[@]}"; do
+        echo "[runall] Killing PID ${pid}"
+        kill ${pid} > /dev/null 2>&1
+        port_pid=$(lsof -t -i:$(echo $current_port))
+        kill ${port_pid} > /dev/null 2>&1
+        current_port=$((current_port-1))
+    done
+    exit 0
+}
+
+echo "[runall] Starting StateManager"
+sleep 1
+dotnet run --project /home/tbdk/study/thesis/dtu-masters-thesis-2023/DCR/DCR.StateManager --no-build &
+pids+=($!)
+pids+=5105
+sleep 1
+
+
+# Loop through each folder in "out/services"
+for folder in services/*; do
+    # Get the folder name without the "code/" prefix
+    echo "Found ${folder}"
+    service=${folder#services/}
+
+    ## Execute the command with the replaced folder and capitalized name
+    echo "[runall] Starting ${service}"
+    jolie -l services/${service}/jolie/lib/${service,,}.jar -s ${service^}Service services/${service}/jolie/${service}_service.ol &
+    pids+=($!)
+    current_port=$((current_port+1))
+    sleep 1
+done
+
+while true; do
+    echo "[runall] Press CTRL-C to shut down all services."
+    sleep 60
+done
+
+ctrl_c()

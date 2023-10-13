@@ -1,0 +1,50 @@
+{
+    "events": [
+        {
+            "id": "ePMilestonee",
+            "initiator": "eP",
+            "action": "Milestone",
+            "receivers": [
+                "e"
+            ]
+        },
+        {
+            "id": "eNullNull",
+            "initiator": "e",
+            "action": "Null",
+            "receivers": [
+                "Null"
+            ]
+        }
+    ],
+    "nestings": [],
+    "relationships": [
+        {
+            "from": "ePMilestonee",
+            "to": "eNullNull",
+            "relations": [
+                {
+                    "relationType": "Milestone"
+                }
+            ]
+        }
+    ],
+    "markings": [
+        {
+            "eventId": "ePMilestonee",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "eNullNull",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        }
+    ]
+}

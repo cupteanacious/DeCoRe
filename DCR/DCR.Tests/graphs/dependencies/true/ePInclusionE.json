@@ -1,0 +1,50 @@
+{
+    "events": [
+        {
+            "id": "ePInclusione",
+            "initiator": "eP",
+            "action": "Inclusion",
+            "receivers": [
+                "e"
+            ]
+        },
+        {
+            "id": "eNullNull",
+            "initiator": "e",
+            "action": "Null",
+            "receivers": [
+                "Null"
+            ]
+        }
+    ],
+    "nestings": [],
+    "relationships": [
+        {
+            "from": "ePInclusione",
+            "to": "eNullNull",
+            "relations": [
+                {
+                    "relationType": "Inclusion"
+                }
+            ]
+        }
+    ],
+    "markings": [
+        {
+            "eventId": "ePInclusione",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "eNullNull",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="RandomGraphGenerator.fs" />
+    <Compile Include="TestFileGenerator.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DCR.DCR2Jolie\DCR.DCR2Jolie.fsproj" />
+    <ProjectReference Include="..\DCR.DCRGraph\DCR.DCRGraph.fsproj" />
+    <ProjectReference Include="..\DCR.Shared\DCR.Shared.fsproj" />
+    <ProjectReference Include="..\DCR.CLI\DCR.CLI.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Argu" Version="6.1.1" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.5" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,149 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "events": {
+            "type": "array",
+            "items":
+                {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "initiator": {
+                            "type": "string"
+                        },
+                        "action": {
+                            "type": "string"
+                        },
+                        "receivers": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "initiator",
+                        "action",
+                        "receivers"
+                    ],
+                    "additionalProperties": false
+                }
+        },
+        "nestings": {
+            "type": "array",
+            "items":
+                {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "events": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "childNestings":  {"$ref": "#/properties/nestings"}
+                        
+                    },
+                    "required": [
+                        "id",
+                        "events",
+                        "childNestings"
+                    ],
+                    "additionalProperties": false
+                }
+        },
+        "relationships": {
+            "type": "array",
+            "items":
+                {
+                    "type": "object",
+                    "properties": {
+                        "from": {
+                            "type": "string"
+                        },
+                        "to": {
+                            "type": "string"
+                        },
+                        "relations": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "relationType": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "relationType"
+                                    ],
+                                    "additionalProperties": false
+                                }
+                            ]
+                        }
+                    },
+                    "required": [
+                        "from",
+                        "to",
+                        "relations"
+                    ],
+                    "additionalProperties": false
+                }
+        },
+        "markings": {
+            "type": "array",
+            "items":
+                {
+                    "type": "object",
+                    "properties": {
+                        "eventId": {
+                            "type": "string"
+                        },
+                        "marking": {
+                            "type": "object",
+                            "properties": {
+                                "executed": {
+                                    "type": "boolean"
+                                },
+                                "included": {
+                                    "type": "boolean"
+                                },
+                                "pending": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "required": [
+                                "executed",
+                                "included",
+                                "pending"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": [
+                        "eventId",
+                        "marking"
+                    ],
+                    "additionalProperties": false
+                }
+        }
+    },
+    "required": [
+        "events",
+        "nestings",
+        "relationships",
+        "markings"
+    ],
+    "additionalProperties": false
+}

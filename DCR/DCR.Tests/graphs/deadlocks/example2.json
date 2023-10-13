@@ -1,0 +1,129 @@
+{
+  "events": [
+    {
+      "id": "A1B",
+      "initiator": "A",
+      "action": "1",
+      "receivers": [
+        "B"
+      ]
+    },
+    {
+      "id": "B2A",
+      "initiator": "B",
+      "action": "2",
+      "receivers": [
+        "A"
+      ]
+    },
+    {
+      "id": "C3B",
+      "initiator": "C",
+      "action": "3",
+      "receivers": [
+        "B"
+      ]
+    },
+    {
+      "id": "DMakePendingCB",
+      "initiator": "D",
+      "action": "MakePending",
+      "receivers": [
+        "C",
+        "B"
+      ]
+    }
+  ],
+  "nestings": [
+  ],
+  "relationships": [
+    {
+      "from": "C3B",
+      "to": "C3B",
+      "relations": [
+        {
+          "relationType": "Exclusion"
+        }
+      ]
+    },
+    {
+      "from": "C3B",
+      "to": "B2A",
+      "relations": [
+        {
+          "relationType": "Exclusion"
+        }
+      ]
+    },
+    {
+      "from": "B2A",
+      "to": "A1B",
+      "relations": [
+        {
+          "relationType": "Exclusion"
+        }
+      ]
+    },
+    {
+      "from": "A1B",
+      "to": "A1B",
+      "relations": [
+        {
+          "relationType": "Condition"
+        }
+      ]
+    },
+    {
+      "from": "DMakePendingCB",
+      "to": "A1B",
+      "relations": [
+        {
+          "relationType": "Response"
+        }
+      ]
+    },
+    {
+      "from": "DMakePendingCB",
+      "to": "C3B",
+      "relations": [
+        {
+          "relationType": "Response"
+        }
+      ]
+    }
+  ],
+  "markings": [
+    {
+      "eventId": "A1B",
+      "marking": {
+        "executed": false,
+        "included": true,
+        "pending": false
+      }
+    },
+    {
+      "eventId": "B2A",
+      "marking": {
+        "executed": false,
+        "included": true,
+        "pending": false
+      }
+    },
+    {
+      "eventId": "C3B",
+      "marking": {
+        "executed": false,
+        "included": true,
+        "pending": false
+      }
+    },
+    {
+      "eventId": "DMakePendingCB",
+      "marking": {
+        "executed": false,
+        "included": true,
+        "pending": false
+      }
+    }
+  ]
+}

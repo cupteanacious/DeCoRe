@@ -1,0 +1,5 @@
+service EmptyService {
+    main {
+        nullProcess
+    }
+}

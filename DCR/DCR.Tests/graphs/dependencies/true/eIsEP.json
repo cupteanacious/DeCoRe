@@ -1,0 +1,24 @@
+{
+    "events": [
+        {
+            "id": "eNullNull",
+            "initiator": "e",
+            "action": "Null",
+            "receivers": [
+                "Null"
+            ]
+        }
+    ],
+    "nestings": [],
+    "relationships": [],
+    "markings": [
+        {
+            "eventId": "eNullNull",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        }
+    ]
+}

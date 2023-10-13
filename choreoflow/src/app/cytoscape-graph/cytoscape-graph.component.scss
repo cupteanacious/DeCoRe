@@ -1,0 +1,86 @@
+.graph {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.controls{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.controls-container{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+.container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav {
+  padding: 20px;
+  width: 300px;
+}
+
+.sidenav-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.sub-container {
+  padding-top:16px;
+  padding-bottom:16px;
+}
+
+.main-controls{
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.btn-double-height {
+  height: 72px;
+}
+
+.logo > img{
+  width: 100%;
+  height: auto;
+}
+
+.margin-8 {
+  margin: 8px 0;
+}
+
+.markings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}

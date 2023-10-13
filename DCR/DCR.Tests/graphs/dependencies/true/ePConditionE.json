@@ -1,0 +1,50 @@
+{
+    "events": [
+        {
+            "id": "ePConditione",
+            "initiator": "eP",
+            "action": "Condition",
+            "receivers": [
+                "e"
+            ]
+        },
+        {
+            "id": "eNullNull",
+            "initiator": "e",
+            "action": "Null",
+            "receivers": [
+                "Null"
+            ]
+        }
+    ],
+    "nestings": [],
+    "relationships": [
+        {
+            "from": "ePConditione",
+            "to": "eNullNull",
+            "relations": [
+                {
+                    "relationType": "Condition"
+                }
+            ]
+        }
+    ],
+    "markings": [
+        {
+            "eventId": "ePConditione",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "eNullNull",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        }
+    ]
+}

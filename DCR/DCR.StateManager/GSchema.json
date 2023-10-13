@@ -1,0 +1,184 @@
+﻿{
+  "definitions": {
+    "Event": {
+      "type": [
+        "object"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "Id": {
+          "type": [
+            "string"
+          ]
+        },
+        "Initiator": {
+          "type": [
+            "string"
+          ]
+        },
+        "Action": {
+          "type": [
+            "string"
+          ]
+        },
+        "Receivers": {
+          "type": [
+            "array"
+          ],
+          "items": {
+            "type": [
+              "string"
+            ]
+          }
+        }
+      },
+      "required": [
+        "Id",
+        "Initiator",
+        "Action",
+        "Receivers"
+      ]
+    },
+    "Tuple<FSharpMap<String, Boolean>, FSharpMap<String, Boolean>, FSharpSet<String>>": {
+      "type": [
+        "object"
+      ],
+      "properties": {
+        "Item1": {
+          "type": [
+            "object"
+          ],
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        },
+        "Item2": {
+          "type": [
+            "object"
+          ],
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        },
+        "Item3": {
+          "type": [
+            "array"
+          ],
+          "items": {
+            "type": [
+              "string"
+            ]
+          }
+        }
+      },
+      "required": [
+        "Item1",
+        "Item2",
+        "Item3"
+      ]
+    },
+    "Tuple<String, String>": {
+      "type": [
+        "object"
+      ],
+      "properties": {
+        "Item1": {
+          "type": [
+            "string"
+          ]
+        },
+        "Item2": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "required": [
+        "Item1",
+        "Item2"
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "E": {
+      "type": [
+        "array"
+      ],
+      "items": {
+        "$ref": "#/definitions/Event"
+      }
+    },
+    "M": {
+      "$ref": "#/definitions/Tuple<FSharpMap<String, Boolean>, FSharpMap<String, Boolean>, FSharpSet<String>>"
+    },
+    "Conditions": {
+      "type": [
+        "array"
+      ],
+      "items": {
+        "$ref": "#/definitions/Tuple<String, String>"
+      }
+    },
+    "Responses": {
+      "type": [
+        "array"
+      ],
+      "items": {
+        "$ref": "#/definitions/Tuple<String, String>"
+      }
+    },
+    "Milestones": {
+      "type": [
+        "array"
+      ],
+      "items": {
+        "$ref": "#/definitions/Tuple<String, String>"
+      }
+    },
+    "Inclusions": {
+      "type": [
+        "array"
+      ],
+      "items": {
+        "$ref": "#/definitions/Tuple<String, String>"
+      }
+    },
+    "Exclusions": {
+      "type": [
+        "array"
+      ],
+      "items": {
+        "$ref": "#/definitions/Tuple<String, String>"
+      }
+    },
+    "Cancels": {
+      "type": [
+        "array"
+      ],
+      "items": {
+        "$ref": "#/definitions/Tuple<String, String>"
+      }
+    },
+    "allRelations": {
+      "type": [
+        "array"
+      ],
+      "items": {
+        "$ref": "#/definitions/Tuple<String, String>"
+      }
+    }
+  },
+  "required": [
+    "E",
+    "M",
+    "Conditions",
+    "Responses",
+    "Milestones",
+    "Inclusions",
+    "Exclusions",
+    "Cancels",
+    "allRelations"
+  ]
+}

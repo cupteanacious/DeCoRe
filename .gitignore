@@ -1,0 +1,39 @@
+
+# build files
+bin/
+obj/
+*.zip
+*.jar
+**/BenchmarkDotNet.Artifacts/
+**/benchmarkTestFiles/
+**/out/
+
+.fake
+
+# JsonTypeProvider
+*.vsidx
+*.dtbcache*
+*read.lock
+*.config
+*.futdcache*
+*.suo
+
+# Graphviz
+*.dot
+
+# IDE
+*.vs/
+*.vscode/
+
+*.out
+*.txt
+
+# Visual Studios
+/DCRCompiler/DCRCompiler.CLI/Properties/launchSettings.json
+
+# devcontainer
+*.devcontainer/
+
+# Test result files
+*TestResults/
+**/code/

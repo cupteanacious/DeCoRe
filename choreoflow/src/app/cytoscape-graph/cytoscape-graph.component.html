@@ -1,0 +1,266 @@
+<mat-drawer-container class="container">
+  <mat-drawer
+    #drawer
+    class="sidenav mat-elevation-z8"
+    mode="side"
+    opened="true"
+    position="start"
+  >
+    <div class="sidenav-container">
+      <div class="main-controls">
+        <div class="logo">
+          <!-- logo -->
+          <img src="assets/ChoreoFlow-logo.png" alt="logo" />
+        </div>
+
+        <div class="sub-container">
+          <h2>Events</h2>
+          <mat-form-field class="full-width">
+            <mat-label>Initiator</mat-label>
+            <input matInput type="text" [(ngModel)]="initiator" />
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Action</mat-label>
+            <input matInput type="text" [(ngModel)]="action" />
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Receivers (comma separated)</mat-label>
+            <input matInput type="text" [(ngModel)]="receivers" />
+          </mat-form-field>
+
+          <button
+            class="full-width"
+            mat-raised-button
+            color="primary"
+            (click)="addEvent(initiator, action, receivers)"
+          >
+            Create event
+          </button>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="sub-container">
+          <h2>Nestings</h2>
+
+          <!-- Add a form to create nesting -->
+          <mat-form-field class="full-width">
+            <mat-label>Nesting ID/Name</mat-label>
+            <input matInput type="text" [(ngModel)]="nestingId" />
+          </mat-form-field>
+          <button
+            class="full-width"
+            mat-raised-button
+            color="primary"
+            (click)="addNesting(nestingId)"
+          >
+            Create nesting
+          </button>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+
+      <div class="fill"></div>
+
+      <div class="sub-container">
+        <!-- Convert and export json -->
+        <button
+          class="full-width btn-double-height"
+          mat-raised-button
+          color="accent"
+          (click)="uploadJSON()"
+        >
+          Import (JSON)
+          <mat-icon>upload</mat-icon>
+        </button>
+      </div>
+      <div class="sub-container">
+        <!-- Convert and download json -->
+        <button
+          class="full-width btn-double-height"
+          mat-raised-button
+          color="accent"
+          (click)="convertToJSON()"
+        >
+          Export (JSON)
+          <mat-icon>download</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer
+    class="sidenav mat-elevation-z8"
+    mode="side"
+    [opened]="
+      (!!selectedEvents && selectedEvents.size() !== 0) ||
+      (!!selectedRelationships && selectedRelationships.size() !== 0)
+    "
+    position="end"
+  >
+    <h1>Selection Options</h1>
+    <div
+      class="sub-container"
+      *ngIf="!!selectedEvents && selectedEvents.size() !== 0"
+    >
+      <h2>Events</h2>
+      <!-- change event markings (Pending, Executed, Included) by toggeling -->
+      <div class="markings margin-8" *ngIf="!!selected && !!selected.markings">
+        <mat-slide-toggle
+          [(ngModel)]="selected.markings.included"
+          (change)="updateMarkingsHTML(selected)"
+          class="margin-8"
+          color="primary"
+          checked="true"
+        >
+          Included
+        </mat-slide-toggle>
+
+        <mat-slide-toggle
+          [(ngModel)]="selected.markings.pending"
+          (change)="updateMarkingsHTML(selected)"
+          class="margin-8"
+          color="primary"
+          checked="true"
+        >
+          Pending
+        </mat-slide-toggle>
+
+        <mat-slide-toggle
+          [(ngModel)]="selected.markings.executed"
+          (change)="updateMarkingsHTML(selected)"
+          class="margin-8"
+          color="primary"
+          checked="true"
+        >
+          Executed
+        </mat-slide-toggle>
+      </div>
+
+      <!-- remove events -->
+      <button
+        class="full-width"
+        mat-raised-button
+        color="warn"
+        (click)="removeEvents(selectedEvents)"
+      >
+        Remove Events
+      </button>
+    </div>
+
+    <mat-divider
+      *ngIf="!!selectedEvents && selectedEvents.size() !== 0"
+    ></mat-divider>
+
+    <div
+      class="sub-container"
+      *ngIf="
+        selectedEvents?.size() === 1 ||
+        selectedEvents?.size() === 2 ||
+        selectedRelationships?.size() !== 0
+      "
+    >
+      <h2>Relationships</h2>
+      <mat-form-field
+        *ngIf="selectedEvents?.size() === 1 || selectedEvents?.size() === 2"
+        class="full-width"
+      >
+        <mat-label>Relationship type</mat-label>
+        <mat-select [(ngModel)]="relationType">
+          <mat-option value="Response">Response</mat-option>
+          <mat-option value="Condition">Condition</mat-option>
+          <mat-option value="Milestone">Milestone</mat-option>
+          <mat-option value="Exclusion">Exclusion</mat-option>
+          <mat-option value="Inclusion">Inclusion</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        class="full-width margin-8"
+        mat-raised-button
+        color="primary"
+        *ngIf="selectedEvents?.size() === 1 || selectedEvents?.size() === 2"
+        (click)="createRelationship(relationType)"
+      >
+        Create relationship
+      </button>
+
+      <!-- Reverse relationship -->
+      <button
+        class="full-width margin-8"
+        mat-raised-button
+        color="accent"
+        (click)="reverseRelationship()"
+        *ngIf="selectedRelationships?.size() !== 0"
+      >
+        Reverse Relationships
+      </button>
+
+      <!-- Remove relationship -->
+      <button
+        class="full-width margin-8"
+        mat-raised-button
+        color="warn"
+        (click)="removeSelectedRelationships()"
+        *ngIf="selectedRelationships?.size() !== 0"
+      >
+        Remove Relationships
+      </button>
+    </div>
+    <mat-divider
+      *ngIf="
+        selectedEvents?.size() === 1 ||
+        selectedEvents?.size() === 2 ||
+        selectedRelationships?.size() !== 0
+      "
+    ></mat-divider>
+
+    <div
+      class="sub-container"
+      *ngIf="
+        !!selectedEvents &&
+        selectedEvents.size() !== 0 &&
+        nestingIds.length !== 0
+      "
+    >
+      <h2>Nestings</h2>
+      <!-- Add event to nesting -->
+      <mat-form-field class="full-width">
+        <mat-label>Selecting a nesting</mat-label>
+        <mat-select [(ngModel)]="selectedNesting">
+          <mat-option [value]="null" disabled>Select nesting</mat-option>
+          <mat-option *ngFor="let nesting of nestingIds" [value]="nesting">
+            {{ nesting }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        class="full-width"
+        mat-raised-button
+        color="primary"
+        (click)="addToNesting(selectedNesting)"
+      >
+        Add to nesting
+      </button>
+
+      <!-- Remove event from nesting -->
+      <button
+        class="full-width margin-8"
+        mat-raised-button
+        color="warn"
+        (click)="removeFromNesting()"
+        *ngIf="anyRemoveableEventSelected()"
+      >
+        Remove from nesting
+      </button>
+    </div>
+    <mat-divider
+      *ngIf="
+        !!selectedEvents &&
+        selectedEvents.size() !== 0 &&
+        nestingIds.length !== 0
+      "
+    ></mat-divider>
+  </mat-drawer>
+  <mat-drawer-content class="sidenav-content">
+    <div class="graph" #cy></div>
+  </mat-drawer-content>
+</mat-drawer-container>

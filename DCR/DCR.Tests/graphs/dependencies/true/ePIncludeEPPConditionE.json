@@ -1,0 +1,75 @@
+{
+    "events": [
+        {
+            "id": "ePIncludeePP",
+            "initiator": "eP",
+            "action": "Include",
+            "receivers": [
+                "ePP"
+            ]
+        },
+        {
+            "id": "ePPConditione",
+            "initiator": "ePP",
+            "action": "Condition",
+            "receivers": [
+                "e"
+            ]
+        },
+        {
+            "id": "eNullNull",
+            "initiator": "e",
+            "action": "Null",
+            "receivers": [
+                "Null"
+            ]
+        }
+    ],
+    "nestings": [],
+    "relationships": [
+        {
+            "from": "ePIncludeePP",
+            "to": "ePPConditione",
+            "relations": [
+                {
+                    "relationType": "Inclusion"
+                }
+            ]
+        },
+        {
+            "from": "ePPConditione",
+            "to": "eNullNull",
+            "relations": [
+                {
+                    "relationType": "Condition"
+                }
+            ]
+        }
+    ],
+    "markings": [
+        {
+            "eventId": "ePIncludeePP",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "ePPConditione",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "eNullNull",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        }
+    ]
+}

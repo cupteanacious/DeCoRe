@@ -1,0 +1,60 @@
+{
+  "events": [
+    {
+      "id": "A1B",
+      "initiator": "A",
+      "action": "1",
+      "receivers": [
+        "B"
+      ]
+    },
+    {
+      "id": "B2A",
+      "initiator": "B",
+      "action": "2",
+      "receivers": [
+        "A"
+      ]
+    }
+  ],
+  "nestings": [
+  ],
+  "relationships": [
+    {
+      "from": "A1B",
+      "to": "B2A",
+      "relations": [
+        {
+          "relationType": "Condition"
+        }
+      ]
+    },
+    {
+      "from": "B2A",
+      "to": "A1B",
+      "relations": [
+        {
+          "relationType": "Condition"
+        }
+      ]
+    }
+  ],
+  "markings": [
+    {
+      "eventId": "A1B",
+      "marking": {
+        "executed": false,
+        "included": true,
+        "pending": true
+      }
+    },
+    {
+      "eventId": "B2A",
+      "marking": {
+        "executed": false,
+        "included": true,
+        "pending": false
+      }
+    }
+  ]
+}

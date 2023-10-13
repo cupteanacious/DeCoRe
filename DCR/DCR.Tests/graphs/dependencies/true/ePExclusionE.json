@@ -1,0 +1,50 @@
+{
+    "events": [
+        {
+            "id": "ePExclusione",
+            "initiator": "eP",
+            "action": "Exclusion",
+            "receivers": [
+                "e"
+            ]
+        },
+        {
+            "id": "eNullNull",
+            "initiator": "e",
+            "action": "Null",
+            "receivers": [
+                "Null"
+            ]
+        }
+    ],
+    "nestings": [],
+    "relationships": [
+        {
+            "from": "ePExclusione",
+            "to": "eNullNull",
+            "relations": [
+                {
+                    "relationType": "Exclusion"
+                }
+            ]
+        }
+    ],
+    "markings": [
+        {
+            "eventId": "ePExclusione",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        },
+        {
+            "eventId": "eNullNull",
+            "marking": {
+                "executed": false,
+                "included": true,
+                "pending": false
+            }
+        }
+    ]
+}

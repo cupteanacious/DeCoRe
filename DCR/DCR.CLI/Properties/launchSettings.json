@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DCR.Compiler.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "--run-example --flatten --code-gen"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "events": [
+    {
+      "id": "AAction1B",
+      "initiator": "A",
+      "action": "Action1",
+      "receivers": ["B"]
+    },
+    {
+      "id": "AAction2B",
+      "initiator": "A",
+      "action": "Action2",
+      "receivers": ["B"]
+    }
+  ],
+  "nestings": [],
+  "relationships": [
+    {
+      "from": "AAction1B",
+      "to": "AAction2B",
+      "relations": [{ "relationType": "Exclusion" }]
+    }
+  ],
+  "markings": [
+    {
+      "eventId": "AAction1B",
+      "marking": { "executed": false, "included": true, "pending": false }
+    },
+    {
+      "eventId": "AAction2B",
+      "marking": { "executed": false, "included": true, "pending": false }
+    }
+  ]
+}
