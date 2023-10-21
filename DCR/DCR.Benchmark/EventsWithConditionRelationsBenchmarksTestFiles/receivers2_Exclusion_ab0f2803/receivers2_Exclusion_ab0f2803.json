@@ -1,0 +1,1 @@
+{"events":[{"id":"Role1d0718fa9","initiator":"Role1","action":"d0718fa9","receivers":["Role2","Role1"]}],"nestings":[],"relationships":[],"markings":[{"eventId":"Role1d0718fa9","marking":{"executed":false,"included":true,"pending":false}}],"totalNumberOfRelations":0}

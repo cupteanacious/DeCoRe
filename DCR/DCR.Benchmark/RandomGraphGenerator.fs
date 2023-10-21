@@ -6,108 +6,6 @@ module RandomGraphGenerator =
     //open System.Collections.Generic
     open DCRGraph.DCRGraphDTO
 
-    let gl_roleNameList = [
-        "Customer";
-        "Inventory";
-        "Shipping";
-        "Notification";
-        "Authentication";
-        "Recommendation";
-        "Analytics";
-        "Pricing";
-        "Search";
-        "Order";
-        "Messaging";
-        "Review";
-        "Subscription";
-        "Content";
-        "Tracking";
-        "Billing";
-        "Campaign";
-        "Feedback";
-        "Reward";
-        "Location";
-        "Document";
-        "Integration";
-        "Rating";
-        "Support";
-        "Workflow";
-        "DataProcessing";
-        "Image";
-        "Translation";
-        "Email";
-        "File";
-        "Compliance";
-        "Reporting";
-        "Loyalty";
-        "FraudDetection";
-        "Social";
-        "Monitoring";
-        "Calendar";
-        "Chat";
-        "Tax";
-        "Survey";
-        "Event";
-        "NotificationDelivery";
-        "Validation";
-        "RecommendationEngine";
-        "Audit";
-        "InventoryManagement";
-        "ErrorHandling";
-        "CreditCard";
-        "PaymentGateway";
-        "AssetManagement";
-        "FeedbackAnalysis";
-        "ContentModeration";
-        "GeoLocation";
-        "Tagging";
-        "SubscriptionManagement";
-        "RecommendationSystem";
-        "RateLimiting";
-        "Scheduling";
-        "AuditLog";
-        "VideoProcessing";
-        "KnowledgeBase";
-        "WorkflowAutomation";
-        "ComplianceManagement";
-        "AnalyticsDashboard";
-        "ImageRecognition";
-        "TranslationEngine";
-        "EmailDelivery";
-        "FileStorage";
-        "FraudPrevention";
-        "SocialMediaIntegration";
-        "PerformanceMonitoring";
-        "CalendarIntegration";
-        "Chatbot";
-        "TaxCalculation";
-        "SurveyAnalytics";
-        "EventRegistration";
-        "PushNotification";
-        "DataValidation";
-        "Personalization";
-        "ErrorReporting";
-        "PaymentProcessing";
-        "AssetTracking";
-        "FeedbackManagement";
-        "ContentDelivery";
-        "GeoFencing";
-        "TagManagement";
-        "SubscriptionRenewal";
-        "RecommendationAlgorithm";
-        "RateLimit";
-        "SchedulingAutomation";
-        "AuditTrail";
-        "VideoStreaming";
-        "KnowledgeGraph";
-        "WorkflowOrchestration";
-        "ComplianceReporting";
-        "AnalyticsVisualization";
-        "ImageOptimization";
-        "LanguageTranslation";
-        "EmailAutomation";
-        "FileSharing"
-    ]
 
     let random = Random()
 
@@ -198,10 +96,11 @@ module RandomGraphGenerator =
             }
         }
 
-    let generateRandomGraph (gCtx: GenerationContext) =
+    let makeNumOfRoleNames (numRoles: int) : string list =
+        [for i in 1 .. numRoles do yield sprintf "Role%s" (i.ToString())]
 
-        let roles =
-            [for l in 1 .. gCtx.NumRoles do yield sprintf "Role%s" (gl_roleNameList.Item l)]
+    let generateRandomGraph (gCtx: GenerationContext) =
+        let roles = makeNumOfRoleNames gCtx.NumRoles
 
         let events = createEventsForRoles gCtx roles
 

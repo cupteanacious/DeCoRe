@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="EventsWithRelationGraphGenerator.fs" />
+    <Compile Include="IncreasingEventsGraphGenerator.fs" />
+    <Compile Include="SingleEventGraphGenerator.fs" />
     <Compile Include="RandomGraphGenerator.fs" />
     <Compile Include="TestFileGenerator.fs" />
     <Compile Include="Program.fs" />
