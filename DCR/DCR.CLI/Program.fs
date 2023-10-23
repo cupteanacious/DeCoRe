@@ -1,6 +1,4 @@
-﻿// Copyright (c) Faizan Yousaf, Tobias Bonnesen. All Rights Reserved.
-
-namespace DCR.CLI
+﻿namespace DCR.CLI
 
 module Main =
     open DCRGraph.DCRGraphDTO

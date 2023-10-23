@@ -1,5 +1,3 @@
-// Copyright (c) Faizan Yousaf, Tobias Bonnesen. All Rights Reserved.
-
 namespace DCRGraph
 
 /// This module contains functions to convert from the DCRGraphDTO type of DCRCompiler.Frontend.DcrGraphDsl

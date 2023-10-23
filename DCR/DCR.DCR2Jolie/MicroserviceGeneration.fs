@@ -1,5 +1,3 @@
-// Copyright (c) Faizan Yousaf, Tobias Bonnesen.  All Rights Reserved.
-
 namespace DCR2Jolie
 
 open Shared.JsonUtils
