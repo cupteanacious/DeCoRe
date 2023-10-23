@@ -1,5 +1,3 @@
-// Copyright (c) Faizan Yousaf, Tobias Bonnesen. All Rights Reserved.
-
 namespace Shared
 
 open Newtonsoft.Json.Serialization

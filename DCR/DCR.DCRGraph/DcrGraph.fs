@@ -1,5 +1,3 @@
-// Copyright (c) Faizan Yousaf, Tobias Bonnesen.  All Rights Reserved.
-
 namespace DCRGraph
 
 /// This module contains types that reflects the data structure of DCR Graphs, as presented in the research paper:

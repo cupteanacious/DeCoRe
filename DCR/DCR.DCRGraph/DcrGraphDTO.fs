@@ -1,5 +1,3 @@
-// Copyright (c) Faizan Yousaf, Tobias Bonnesen. All Rights Reserved.
-
 namespace DCRGraph
 
 module DCRGraphDTO =
